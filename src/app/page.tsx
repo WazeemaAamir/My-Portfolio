@@ -18,7 +18,6 @@ export default function HomePage() {
             src="/profile.jpg"
             alt="Wazeem Aamir"
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
             priority
           />
