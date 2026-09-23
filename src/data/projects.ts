@@ -24,4 +24,12 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com',
     demoUrl: 'https://demo.com',
   },
+  {
+    id: 'portfolio-website',
+    title: 'Portfolio Website',
+    description: 'Clean, geometric vector portfolio and modern emblem concepts crafted for business branding.',
+    techStack: ['Illustrator', 'Photoshop', 'Branding'],
+    githubUrl: 'https://github.com',
+    demoUrl: 'https://warda-portfolio-three.vercel.app/',
+  },
 ];
