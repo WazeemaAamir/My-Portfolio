@@ -12,12 +12,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 font-sans">
       <section className="container mx-auto px-6 py-20 text-center space-y-6 flex flex-col items-center">
-        
         <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-xl shadow-blue-500/10 mb-2">
           <Image
             src="/profile.jpg"
             alt="Wazeem Aamir"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
             priority
           />
