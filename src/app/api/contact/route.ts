@@ -5,29 +5,43 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    
-    // Validate request body
-    const validatedData = ContactSchema.parse(body);
 
-    // Save message to database
-    const savedMessage = await prisma.contactMessage.create({
-      data: validatedData,
-    });
+    const result = ContactSchema.safeParse(body);
 
-    return NextResponse.json(
-      { success: true, data: savedMessage, message: 'Message sent successfully!' },
-      { status: 201 }
-    );
-  } catch (error: any) {
-    if (error.name === 'ZodError') {
+    if (!result.success) {
       return NextResponse.json(
-        { success: false, errors: error.errors },
+        {
+          success: false,
+          message: 'Please check the form fields.',
+          errors: result.error.issues,
+        },
         { status: 400 }
       );
     }
 
+    const savedMessage = await prisma.contactMessage.create({
+      data: result.data,
+    });
+
     return NextResponse.json(
-      { success: false, message: 'Internal Server Error' },
+      {
+        success: true,
+        message: 'Message sent successfully!',
+        data: savedMessage,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('CONTACT API ERROR:', error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Internal Server Error',
+      },
       { status: 500 }
     );
   }
