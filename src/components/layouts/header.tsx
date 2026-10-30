@@ -27,7 +27,7 @@ export default function Header() {
               Wazeema Aamir
             </span>
             <span className="text-xs text-blue-400 font-medium block">
-              Frontend Developer
+              Full stack Software Engineer 
             </span>
           </div>
         </Link>
